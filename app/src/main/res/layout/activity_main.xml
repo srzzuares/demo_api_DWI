@@ -8,8 +8,56 @@
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/etCodigoBarras"
+        android:layout_marginTop="3dp"
+        android:hint="Codigo de Barras"
+        android:textAlignment="center"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etDescripcion"
+        android:layout_marginTop="3dp"
+        android:hint="Descripcion"
+        android:textAlignment="center"
+        android:layout_below="@id/etCodigoBarras"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etMarca"
+        android:layout_marginTop="3dp"
+        android:hint="Marca"
+        android:textAlignment="center"
+        android:layout_below="@id/etDescripcion"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etprecioCompra"
+        android:layout_marginTop="3dp"
+        android:hint="Precio de la Compra"
+        android:textAlignment="center"
+        android:layout_below="@id/etMarca"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etprecioVenta"
+        android:layout_marginTop="3dp"
+        android:hint="Precio de Venta"
+        android:textAlignment="center"
+        android:layout_below="@id/etprecioCompra"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etExistencias"
+        android:layout_marginTop="3dp"
+        android:hint="Existencias"
+        android:textAlignment="center"
+        android:layout_below="@id/etprecioVenta"
         />
 
 </RelativeLayout>
