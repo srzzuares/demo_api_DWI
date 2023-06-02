@@ -65,13 +65,7 @@
         android:layout_width="106dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etExistencias"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="290dp"
-        android:layout_marginBottom="373dp"
+        android:layout_marginStart="10dp"
         android:text="Buscar" />
 
     <Button
@@ -80,39 +74,25 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/etExistencias"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="293dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="373dp"
+        android:layout_marginStart="280dp"
         android:text="Guardar" />
 
     <Button
         android:id="@+id/btnUpdate"
         android:layout_width="wrap_content"
-        android:layout_height="44dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/etExistencias"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="153dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="143dp"
-        android:layout_marginBottom="373dp"
+        android:layout_marginStart="140dp"
         android:text="Actualizar" />
 
     <Button
         android:id="@+id/btnDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSave"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="293dp"
-        android:layout_marginTop="373dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginBottom="373dp"
+        android:layout_marginStart="280dp"
+        android:layout_marginTop="15dp"
         android:text="Eliminar" />
 
     <ListView
