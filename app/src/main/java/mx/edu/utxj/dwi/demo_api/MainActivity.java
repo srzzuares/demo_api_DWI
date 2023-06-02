@@ -15,20 +15,20 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnSave;
-    private Button btnSearch;
-    private Button btnDelete;
-    private Button btnUpdate;
+    private String url = "http://10.10.62.17:3300/";
+    private Button btnSave, btnDelete, btnUpdate, btnSearch;
     private EditText etCodigoBarras,etDescripcion,etMarca,etprecioCompra,etprecioVenta,etExistencias;
     private ListView lvProducts;
     private RequestQueue requestQueue;
@@ -55,13 +55,48 @@ public class MainActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                JSONObject insertarDAtos = new JSONObject();
+                try {
+                    insertarDAtos.put("codigobarras",etCodigoBarras.getText().toString());
+                    insertarDAtos.put("descripcion",etDescripcion.getText().toString());
+                    insertarDAtos.put("marca",etMarca.getText().toString());
+                    insertarDAtos.put("preciocompra",Integer.parseInt(etprecioCompra.getText().toString()));
+                    insertarDAtos.put("precioventa",Integer.parseInt(etprecioVenta.getText().toString()));
+                    insertarDAtos.put("existencias",Integer.parseInt(etExistencias.getText().toString()));
+                }catch (JSONException e){
+                    Toast.makeText(MainActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                }
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                        Request.Method.POST,
+                        url+"insert/",
+                        insertarDAtos,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    if (response.getString("status").equals("Producto Insertado"))
+                                        Toast.makeText(MainActivity.this,"Producto insertado con éxito", Toast.LENGTH_SHORT).show();
+                                    listProducts();
+                                }catch (JSONException e){
+                                    Toast.makeText(MainActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(MainActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                );
 
+                requestQueue.add(jsonObjectRequest);
             }
         });
     }
 
     protected void listProducts(){
-        String url = "http://10.10.62.17:3300/";
+
         jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
                 url,
