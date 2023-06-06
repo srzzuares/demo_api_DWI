@@ -63,16 +63,17 @@ public class MainActivity extends AppCompatActivity {
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                if(response.has("status")) Toast.makeText(MainActivity.this,"Producto no encontrado",Toast.LENGTH_SHORT).show();
+                                if (response.has("status"))
+                                    Toast.makeText(MainActivity.this, "PRODUCTO NO ENCONTRADO", Toast.LENGTH_SHORT).show();
                                 else {
                                     try {
-                                        etDescripcion.setText(response.getString("description"));
+                                        etDescripcion.setText(response.getString("descripcion"));
                                         etMarca.setText(response.getString("marca"));
                                         etprecioCompra.setText(String.valueOf(response.getInt("preciocompra")));
                                         etprecioVenta.setText(String.valueOf(response.getInt("precioventa")));
                                         etExistencias.setText(String.valueOf(response.getInt("existencias")));
                                     } catch (JSONException e) {
-                                        Toast.makeText(MainActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             }
@@ -80,10 +81,11 @@ public class MainActivity extends AppCompatActivity {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(MainActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                 );
+                requestQueue.add(peticion);
             }
         });
         btnSave.setOnClickListener(new View.OnClickListener() {
