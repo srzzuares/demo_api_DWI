@@ -52,6 +52,29 @@ public class MainActivity extends AppCompatActivity {
         requestQueue= Volley.newRequestQueue(this);
         lvProducts=findViewById(R.id.lvProducts);
         listProducts();
+
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                JsonObjectRequest peticion = new JsonObjectRequest(
+                        Request.Method.GET,
+                        url + etCodigoBarras.getText().toString(),
+                        null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(MainActivity.this,error.getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                );
+            }
+        });
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
