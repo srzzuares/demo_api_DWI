@@ -63,7 +63,18 @@ public class MainActivity extends AppCompatActivity {
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-
+                                if(response.has("status")) Toast.makeText(MainActivity.this,"Producto no encontrado",Toast.LENGTH_SHORT).show();
+                                else {
+                                    try {
+                                        etDescripcion.setText(response.getString("description"));
+                                        etMarca.setText(response.getString("marca"));
+                                        etprecioCompra.setText(String.valueOf(response.getInt("preciocompra")));
+                                        etprecioVenta.setText(String.valueOf(response.getInt("precioventa")));
+                                        etExistencias.setText(String.valueOf(response.getInt("existencias")));
+                                    } catch (JSONException e) {
+                                        Toast.makeText(MainActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                                    }
+                                }
                             }
                         },
                         new Response.ErrorListener() {
@@ -130,9 +141,10 @@ public class MainActivity extends AppCompatActivity {
                         //Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                         for(int i = 0;i < response.length(); i++){
                             try {
+                                String codigobarras = response.getJSONObject(i).getString("codigobarras");
                                 String descripcion = response.getJSONObject(i).getString("descripcion") ;
                                 String marca = response.getJSONObject(i).getString("marca");
-                                origenDatos.add(descripcion+"::"+marca);
+                                origenDatos.add(codigobarras+">>"+descripcion+"::"+marca);
                             } catch (JSONException e) {
                                 throw new RuntimeException(e);
                             }
